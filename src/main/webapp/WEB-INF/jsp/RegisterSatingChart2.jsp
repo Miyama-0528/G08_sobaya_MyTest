@@ -44,8 +44,24 @@
         </tr>
       </c:forEach>
     </table>
-    <button type="submit" onclick="レジ座席一覧画面">座席一覧に戻る</button>
+    <button type="submit" onclick="popupAction()">座席一覧に戻る</button>
     <p>合計金額:${ 〇卓お客様情報.合計金額 }</p>
     <button type="submit">お会計</button>
+    
+    <script>
+      function popupAction() {
+        const result = confirm('お会計をキャンセルしますか?');
+        
+        if (result) {
+            // OK → 遷移したいURLへ移動
+            window.location.href = "レジ座席一覧画面"; 
+        } 
+        else {
+            // キャンセル → 何もしない
+            return;
+        }
+      }
+    </script>
+    
   </body>
 </html>
