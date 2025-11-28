@@ -46,6 +46,6 @@
     </table>
     <button type="submit" onclick="レジ座席一覧画面">座席一覧に戻る</button>
     <p>合計金額:${ 〇卓お客様情報.合計金額 }</p>
-    <button>お会計</button>
+    <button type="submit">お会計</button>
   </body>
 </html>
