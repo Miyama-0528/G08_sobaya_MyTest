@@ -35,16 +35,16 @@
   <body>
     <h1>${ 〇卓お客様情報.卓番号 }卓お会計</h1>
     <table>
-      <c:forEach>
+      <c:forEach var="item" items="${ 〇卓お客様情報.注文一覧 }">
         <tr>
-          <th>${ 〇卓お客様情報.商品名 }</th>
-          <td>${ 〇卓お客様情報.金額 }</td>
-          <td>${ 〇卓お客様情報.個数 }</td>
-          <td>${ 〇卓お客様情報.注文状態 }</td>
+          <th>${ item.商品名 }</th>
+          <td>${ item.金額 }</td>
+          <td>${ item.個数 }</td>
+          <td>${ item.注文状態 }</td>
         </tr>
       </c:forEach>
     </table>
-    <button type="submit" onclick="popupAction()">座席一覧に戻る</button>
+    <button onclick="popupAction()">座席一覧に戻る</button>
     <p>合計金額:${ 〇卓お客様情報.合計金額 }</p>
     <button type="submit">お会計</button>
     
