@@ -10,7 +10,11 @@ public class TableService {
 
     public TableListViewModel getTableList() {
 
-        // 仮データ（後で DAO に置き換える）
+        // ================================
+        // ★ 元の仮データ（全席空き）
+        // ================================
+    		
+        /*
         List<TableDTO> list = new ArrayList<>();
         for (int i = 1; i <= 16; i++) {
             TableDTO dto = new TableDTO();
@@ -18,8 +22,28 @@ public class TableService {
             dto.setHasCustomer(false);  // とりあえず全席空き
             list.add(dto);
         }
+        */
 
-        // ViewModel に詰める
+        // ================================
+        // ★ 修正版：一部の席にお客さんがいる状態
+        // ================================
+    		
+        List<TableDTO> list = new ArrayList<>();
+        for (int i = 1; i <= 16; i++) {
+            TableDTO dto = new TableDTO();
+            dto.setTableNumber(i);
+
+            // 1,3,5番卓にお客さんがいる例
+            if (i == 1) {
+                dto.setHasCustomer(true);   // 使用中
+            } else {
+                dto.setHasCustomer(false);  // 空席
+            }
+
+            list.add(dto);
+        }
+
+        // ViewModel にセット
         TableListViewModel vm = new TableListViewModel();
         vm.setTableList(list);
 

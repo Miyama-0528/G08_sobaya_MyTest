@@ -2,23 +2,47 @@ package model.dto;
 
 public class OrderDTO {
 	 private int orderId;
-   private String 商品名;
-   private int 金額;
-   private int 個数;
-   private String 注文状態;
+   private String orderName;
+   private int price;
+   private int stock;
+   private String orderStatus;
 
-   public int getOrderId() { return orderId; }
-   public void setOrderId(int orderId) { this.orderId = orderId; }
+   public int getOrderId() {  
+  	 return orderId; 
+   }
+   
+   public void setOrderId(int orderId) {
+  	 this.orderId = orderId; 
+   }
 
-   public String get商品名() { return 商品名; }
-   public void set商品名(String 商品名) { this.商品名 = 商品名; }
+   public String getOrderName() {
+  	 return orderName;
+   }
+   public void setOrderName(String orderName) {
+  	 this.orderName = orderName;
+   }
 
-   public int get金額() { return 金額; }
-   public void set金額(int 金額) { this.金額 = 金額; }
+   public int getPrice() {
+  	 return price;
+   }
+   
+   public void setPrice(int price) {
+  	 this.price = price;
+   }
 
-   public int get個数() { return 個数; }
-   public void set個数(int 個数) { this.個数 = 個数; }
+   public int getStock() {
+  	 return stock;
+   }
+   
+   public void setStock(int stock) {
+  	 this.stock = stock;
+   }
 
-   public String get注文状態() { return 注文状態; }
-   public void set注文状態(String 注文状態) { this.注文状態 = 注文状態; }
+   public String getOrderStatus() {
+  	 return orderStatus;
+   }
+   
+   public void setOrderStatus(String orderStatus) {
+  	 this.orderStatus = orderStatus;
+   }
 }

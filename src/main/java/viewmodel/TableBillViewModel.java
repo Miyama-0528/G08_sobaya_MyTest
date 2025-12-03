@@ -6,12 +6,31 @@ import model.dto.OrderDTO;
 import model.dto.TableInfoDTO;
 
 public class TableBillViewModel {
-	private TableInfoDTO 卓情報;
-  private List<OrderDTO> 注文一覧;
+	private TableInfoDTO tableInfo;
+  private List<OrderDTO> orderList;
+  private int totalPrice;
 
-  public TableInfoDTO get卓情報() { return 卓情報; }
-  public void set卓情報(TableInfoDTO 卓情報) { this.卓情報 = 卓情報; }
+  public TableInfoDTO getTableInfo() {
+  	return tableInfo;
+  }
+  
+  public void setTableInfo(TableInfoDTO tableInfo) {
+  	this.tableInfo = tableInfo;
+  }
 
-  public List<OrderDTO> get注文一覧() { return 注文一覧; }
-  public void set注文一覧(List<OrderDTO> 注文一覧) { this.注文一覧 = 注文一覧; }
+  public List<OrderDTO> getOrderList() {
+  	return orderList;
+  }
+  
+  public void setOrderList(List<OrderDTO> orderList) {
+  	this.orderList = orderList;
+  }
+  
+  public int getTotalPrice() {
+    return totalPrice;
+}
+
+  public void setTotalPrice(int totalPrice) {
+    this.totalPrice = totalPrice;
+}
 }

@@ -13,16 +13,16 @@ public class OrderDAO {
     List<OrderDTO> list = new ArrayList<>();
 
     OrderDTO a = new OrderDTO();
-    a.set商品名("唐揚げ");
-    a.set金額(500);
-    a.set個数(2);
-    a.set注文状態("提供済");
+    a.setOrderName("唐揚げ");
+    a.setPrice(500);
+    a.setStock(2);
+    a.setOrderStatus("提供済");
 
     OrderDTO b = new OrderDTO();
-    b.set商品名("コーラ");
-    b.set金額(300);
-    b.set個数(1);
-    b.set注文状態("調理中");
+    b.setOrderName("コーラ");
+    b.setPrice(300);
+    b.setStock(1);
+    b.setOrderStatus("調理中");
 
     list.add(a);
     list.add(b);

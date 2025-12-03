@@ -33,19 +33,19 @@
   </head>
 
   <body>
-    <h1>${ 〇卓お客様情報.卓番号 }卓お会計</h1>
+    <h1>${ viewModel.tableInfo.tableNumber }卓お会計</h1>
     <table>
-      <c:forEach var="item" items="${ 〇卓お客様情報.注文一覧 }">
+      <c:forEach var="item" items="${ viewModel.orderList }">
         <tr>
-          <th>${ item.商品名 }</th>
-          <td>${ item.金額 }</td>
-          <td>${ item.個数 }</td>
-          <td>${ item.注文状態 }</td>
+          <th>${ item.orderName }</th>
+          <td>${ item.price }</td>
+          <td>${ item.stock }</td>
+          <td>${ item.orderStatus }</td>
         </tr>
       </c:forEach>
     </table>
     <button onclick="popupAction()">座席一覧に戻る</button>
-    <p>合計金額:${ 〇卓お客様情報.合計金額 }</p>
+    <p>合計金額:${ viewModel.totalPrice }</p>
     <button type="submit">お会計</button>
     
     <script>
@@ -54,7 +54,7 @@
         
         if (result) {
             // OK → 遷移したいURLへ移動
-            window.location.href = "レジ座席一覧画面"; 
+            window.location.href = "/WEB-INF/jsp/Table.jsp"; 
         } 
         else {
             // キャンセル → 何もしない
