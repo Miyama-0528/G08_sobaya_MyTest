@@ -7,25 +7,21 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.service.TableService;
+import model.service.TableListService;
 import viewmodel.TableListViewModel;
 
 @WebServlet("/TableListServlet")
 public class TableListServlet extends HttpServlet {
+
+    private TableListService service = new TableListService();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        // Service 呼び出し
-        TableService service = new TableService();
-
-        // 画面表示用の ViewModel を作成
         TableListViewModel vm = service.getTableList();
-
-        // JSP に渡す
         request.setAttribute("viewModel", vm);
 
-        // 画面遷移
-        request.getRequestDispatcher("/WEB-INF/jsp/Table.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/jsp/TableList.jsp").forward(request, response);
     }
 }

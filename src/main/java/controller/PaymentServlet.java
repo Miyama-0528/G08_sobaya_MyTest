@@ -1,0 +1,51 @@
+package controller;
+
+import java.io.IOException;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import model.service.PaymentService;
+
+@WebServlet("/PaymentServlet")
+public class PaymentServlet extends HttpServlet {
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        // パラメータ取得
+        String tableNumberStr = request.getParameter("tableNumber");
+        String payAmountStr 	= request.getParameter("payAmount");
+        String totalAmountStr = request.getParameter("totalAmount");
+
+        // null/空チェックしつつ変換
+        int tableNumber = (tableNumberStr == null || tableNumberStr.isEmpty())
+                ? 0 : Integer.parseInt(tableNumberStr);
+        int payAmount = (payAmountStr == null || payAmountStr.isEmpty())
+                ? 0 : Integer.parseInt(payAmountStr);
+        int totalAmount = (totalAmountStr == null || totalAmountStr.isEmpty())
+                ? 0 : Integer.parseInt(totalAmountStr);
+        // 確認用
+        System.out.println("tableNumber = " + tableNumber);
+        System.out.println("payAmount   = " + payAmount);
+        System.out.println("totalAmount = " + totalAmount);
+        System.out.println();
+
+        // 決済処理
+        PaymentService service = new PaymentService();
+        service.payBill(tableNumber, payAmount, totalAmount);
+
+        // JSP 表示用に値セット
+        request.setAttribute("tableNumber", tableNumber);
+        request.setAttribute("payAmount", payAmount);
+        request.setAttribute("totalAmount", totalAmount);
+        request.setAttribute("change", payAmount - totalAmount);
+
+        // 決済完了画面へ
+        request.getRequestDispatcher("/WEB-INF/jsp/PaymentDone.jsp")
+               .forward(request, response);
+    }
+}

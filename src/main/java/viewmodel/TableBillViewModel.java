@@ -3,34 +3,33 @@ package viewmodel;
 import java.util.List;
 
 import model.dto.OrderDTO;
-import model.dto.TableInfoDTO;
 
 public class TableBillViewModel {
-	private TableInfoDTO tableInfo;
-  private List<OrderDTO> orderList;
-  private int totalPrice;
+    private int tableNumber;
+    private int totalPrice;
+    private List<OrderDTO> orderList;
 
-  public TableInfoDTO getTableInfo() {
-  	return tableInfo;
-  }
-  
-  public void setTableInfo(TableInfoDTO tableInfo) {
-  	this.tableInfo = tableInfo;
-  }
+    public int getTableNumber() {
+    	return tableNumber;
+    }
+    
+    public void setTableNumber(int tableNumber) {
+    	this.tableNumber = tableNumber;
+    }
 
-  public List<OrderDTO> getOrderList() {
-  	return orderList;
-  }
-  
-  public void setOrderList(List<OrderDTO> orderList) {
-  	this.orderList = orderList;
-  }
-  
-  public int getTotalPrice() {
-    return totalPrice;
-}
+    public int getTotalPrice() {
+    	return totalPrice;
+    }
+    
+    public void setTotalPrice(int totalPrice) {
+    	this.totalPrice = totalPrice;
+    }
 
-  public void setTotalPrice(int totalPrice) {
-    this.totalPrice = totalPrice;
-}
+    public List<OrderDTO> getOrderList() {
+    	return orderList;
+    }
+    
+    public void setOrderList(List<OrderDTO> orderList) {
+    	this.orderList = orderList;
+    }
 }

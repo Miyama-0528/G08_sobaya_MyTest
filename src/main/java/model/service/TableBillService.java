@@ -17,7 +17,7 @@ public class TableBillService {
 
         // 注文一覧を取得
         OrderDAO dao = new OrderDAO();
-        List<OrderDTO> orderList = dao.findByTableNo(tableNumber);
+        List<OrderDTO> orderList = dao.findByTableNumber(tableNumber);
 
         // 合計金額を計算
         int total = 0;
@@ -27,9 +27,8 @@ public class TableBillService {
 
         // ViewModel にセット
         TableBillViewModel vm = new TableBillViewModel();
-        vm.setTableInfo(tableInfo);
+        vm.setTableNumber(tableNumber);
         vm.setOrderList(orderList);
-        vm.setTotalPrice(total);
 
         return vm;
     }

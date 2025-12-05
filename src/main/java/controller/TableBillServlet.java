@@ -1,34 +1,44 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.dto.OrderDTO;
+import model.dto.TableInfoDTO;
 import model.service.OrderService;
 import viewmodel.TableBillViewModel;
 
-/**
- * Servlet implementation class TableBillServlet
- */
 @WebServlet("/TableBillServlet")
 public class TableBillServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-	@Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-          throws ServletException, IOException {
 
-      int tableNo = Integer.parseInt(request.getParameter("tableNo"));
+    private OrderService service = new OrderService();
 
-      OrderService service = new OrderService();
-      TableBillViewModel vm = service.createViewModel(tableNo);
-      
-      request.setAttribute("viewModel", vm);
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-      request.getRequestDispatcher("/WEB-INF/jsp/TableBill.jsp").forward(request, response);
-  }
+        // 卓番号を取得
+        int tableNo = Integer.parseInt(request.getParameter("tableNo"));
 
+        // 注文一覧取得
+        List<OrderDTO> orders = service.getOrdersByTable(tableNo);
+
+        // 合計金額などをまとめた情報を取得
+        TableInfoDTO info = service.getTableInfo(tableNo, orders);
+
+        // ViewModel に詰める
+        TableBillViewModel vm = new TableBillViewModel();
+        vm.setTableNumber(info.getTableNumber());
+        vm.setTotalPrice(info.getTotalPrice());
+        vm.setOrderList(orders);
+
+        request.setAttribute("viewModel", vm);
+
+        request.getRequestDispatcher("/WEB-INF/jsp/TableBill.jsp").forward(request, response);
+    }
 }

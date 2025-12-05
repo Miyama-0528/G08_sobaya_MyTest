@@ -6,7 +6,7 @@ import java.util.List;
 import model.dto.TableDTO;
 import viewmodel.TableListViewModel;
 
-public class TableService {
+public class TableListService {
 
     public TableListViewModel getTableList() {
 
@@ -33,7 +33,7 @@ public class TableService {
             TableDTO dto = new TableDTO();
             dto.setTableNumber(i);
 
-            // 1,3,5番卓にお客さんがいる例
+            // 1番卓にお客さんがいる例
             if (i == 1) {
                 dto.setHasCustomer(true);   // 使用中
             } else {

@@ -1,67 +1,91 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <title>レジ会計画面</title>
-    <!-------仮css------->
+    <title>会計画面</title>
+
     <style>
       table {
-        border: 3px solid;
-        border-color: black;
-        width: 100%;
+        border-collapse: collapse; width: 100%;
       }
-
-      th {
-        text-align: center;
-        border: 3px solid;
-        border-color: black;
-        padding: 20px;
-        padding-left: 70px;
-        padding-right: 70px;
-      }
-
-      td {
-        text-align: center;
-        border: 3px solid;
-        border-color: black;
-        padding: 20px;
+      
+      th, td {
+        border: 1px solid #000; padding: 8px; text-align: center;
       }
     </style>
   </head>
 
   <body>
-    <h1>${ viewModel.tableInfo.tableNumber }卓お会計</h1>
+    <h2>テーブル ${viewModel.tableNumber} の会計</h2>
+
+    <!-- 注文一覧 -->
     <table>
-      <c:forEach var="item" items="${ viewModel.orderList }">
+      <tr>
+        <th>商品名</th>
+        <th>数量</th>
+        <th>単価</th>
+        <th>小計</th>
+        <th>状態</th>
+      </tr>
+
+      <c:forEach var="item" items="${viewModel.orderList}">
         <tr>
-          <th>${ item.orderName }</th>
-          <td>${ item.price }</td>
+          <td>${ item.orderName }</td>
           <td>${ item.stock }</td>
+          <td>${ item.price }</td>
+          <td>${ item.stock * item.price }</td>
           <td>${ item.orderStatus }</td>
         </tr>
       </c:forEach>
     </table>
-    <button onclick="popupAction()">座席一覧に戻る</button>
-    <p>合計金額:${ viewModel.totalPrice }</p>
-    <button type="submit">お会計</button>
-    
+
+    <!-- 合計金額 -->
+    <h3>合計金額：<span id="total">${ viewModel.totalPrice }</span> 円</h3>
+
+    <!-- 支払金額入力＋お釣り -->
+    <div>
+      <label>支払金額：</label>
+      <input type="number" id="pay" oninput="calcChange()">
+
+      <p>お釣り：<span id="change">0</span> 円</p>
+    </div>
+
+    <!-- 会計ボタン -->
+    <form action="PaymentServlet" method="post" onsubmit="return validatePayment()">
+      <input type="hidden" name="tableNumber" value="${ viewModel.tableNumber }">
+      <input type="hidden" id="sendPay" name="payAmount">
+      <input type="hidden" name="totalAmount" value="${ viewModel.totalPrice }">
+      <button type="submit">会計する</button>
+    </form>
+
+
     <script>
-      function popupAction() {
-        const result = confirm('お会計をキャンセルしますか?');
-        
-        if (result) {
-            // OK → 遷移したいURLへ移動
-            window.location.href = "/WEB-INF/jsp/Table.jsp"; 
-        } 
-        else {
-            // キャンセル → 何もしない
-            return;
+      function calcChange() {
+        const total = Number(document.getElementById("total").textContent);
+        const pay = Number(document.getElementById("pay").value);
+
+        const change = pay - total;
+
+        document.getElementById("change").textContent = change >= 0 ? change : 0;
+        document.getElementById("sendPay").value = pay;
+      }
+
+      // ★ 支払い金額チェック（不足していたら送信させない）
+      function validatePayment() {
+        const total = Number(document.getElementById("total").textContent);
+        const pay = Number(document.getElementById("pay").value);
+
+        if (pay < total) {
+          alert("支払い金額が不足しています。");
+          console.log('金額不足')
+          return false;  // ← フォーム送信を止める
         }
+        console.log('会計完了')
+        return true; // OK → 送信
       }
     </script>
-    
+          
+    </script>
   </body>
 </html>
