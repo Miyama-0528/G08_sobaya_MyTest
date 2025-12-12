@@ -23,13 +23,13 @@ public class TableBillServlet extends HttpServlet {
             throws ServletException, IOException {
 
         // 卓番号を取得
-        int tableNo = Integer.parseInt(request.getParameter("tableNo"));
+        int tableNumber = Integer.parseInt(request.getParameter("tableNumber"));
 
         // 注文一覧取得
-        List<OrderDTO> orders = service.getOrdersByTable(tableNo);
+        List<OrderDTO> orders = service.getOrdersByTable(tableNumber);
 
         // 合計金額などをまとめた情報を取得
-        TableInfoDTO info = service.getTableInfo(tableNo, orders);
+        TableInfoDTO info = service.getTableInfo(tableNumber, orders);
 
         // ViewModel に詰める
         TableBillViewModel vm = new TableBillViewModel();
@@ -38,7 +38,7 @@ public class TableBillServlet extends HttpServlet {
         vm.setOrderList(orders);
         
         //確認用
-        System.out.println("tableNo   = " + tableNo);
+        System.out.println("tableNo   = " + tableNumber);
         System.out.println("orders    = " + orders);
         System.out.println("info      = " + info);
         System.out.println("viewModel = " + vm);     
