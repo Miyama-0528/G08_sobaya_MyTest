@@ -42,13 +42,11 @@ public class PaymentServlet extends HttpServlet {
         PaymentService service = new PaymentService();
         service.payBill(tableNumber, payAmount, totalAmount);
 
-        // JSP 表示用に値セット
         request.setAttribute("tableNumber", tableNumber);
         request.setAttribute("payAmount", payAmount);
         request.setAttribute("totalAmount", totalAmount);
         request.setAttribute("change", payAmount - totalAmount);
 
-        // 決済完了画面へ
         request.getRequestDispatcher("/WEB-INF/jsp/PaymentDone.jsp")
                .forward(request, response);
     }
