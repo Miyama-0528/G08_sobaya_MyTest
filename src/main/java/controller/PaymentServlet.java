@@ -35,6 +35,7 @@ public class PaymentServlet extends HttpServlet {
         System.out.println("payAmount   = " + payAmount);
         System.out.println("totalAmount = " + totalAmount);
         System.out.println("change      = " + change );
+        System.out.println(tableNumber + "卓_会計完了");
         System.out.println("==============================");
 
         // 決済処理

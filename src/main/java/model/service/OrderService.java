@@ -10,11 +10,11 @@ public class OrderService {
 
     private OrderDAO orderDAO = new OrderDAO();
 
-    public List<OrderDTO> getOrdersByTable(int tableNo) {
-        return orderDAO.findByTableNumber(tableNo);
+    public List<OrderDTO> getOrdersByTable(int tableNumber) {
+        return orderDAO.findByTableNumber(tableNumber);
     }
 
-    public TableInfoDTO getTableInfo(int tableNo, List<OrderDTO> orders) {
+    public TableInfoDTO getTableInfo(int tableNumber, List<OrderDTO> orders) {
 
         int sum = 0;
         for (OrderDTO o : orders) {
@@ -22,7 +22,7 @@ public class OrderService {
         }
 
         TableInfoDTO info = new TableInfoDTO();
-        info.setTableNumber(tableNo);
+        info.setTableNumber(tableNumber);
         info.setTotalPrice(sum);
         return info;
     }
