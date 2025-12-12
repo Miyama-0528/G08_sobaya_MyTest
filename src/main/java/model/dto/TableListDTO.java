@@ -1,6 +1,6 @@
 package model.dto;
 
-public class TableDTO {
+public class TableListDTO {
     private int tableNumber;
     private boolean hasCustomer;
 

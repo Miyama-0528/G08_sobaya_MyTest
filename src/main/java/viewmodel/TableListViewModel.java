@@ -2,16 +2,16 @@ package viewmodel;
 
 import java.util.List;
 
-import model.dto.TableDTO;
+import model.dto.TableListDTO;
 
 public class TableListViewModel {
-    private List<TableDTO> tableList;
+    private List<TableListDTO> tableList;
 
-    public List<TableDTO> getTableList() {
+    public List<TableListDTO> getTableList() {
         return tableList;
     }
 
-    public void setTableList(List<TableDTO> tableList) {
+    public void setTableList(List<TableListDTO> tableList) {
         this.tableList = tableList;
     }
 }

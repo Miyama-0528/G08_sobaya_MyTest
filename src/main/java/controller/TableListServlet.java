@@ -20,6 +20,11 @@ public class TableListServlet extends HttpServlet {
             throws ServletException, IOException {
 
         TableListViewModel vm = service.getTableList();
+        
+        //確認用
+        System.out.println("viewModel = " + vm);
+        System.out.println("==============================");
+        
         request.setAttribute("viewModel", vm);
 
         request.getRequestDispatcher("/WEB-INF/jsp/TableList.jsp").forward(request, response);

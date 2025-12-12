@@ -17,6 +17,7 @@ public class PaymentService {
         tableDAO.updateToEmpty(tableNo);
 
         // 必要ならログ等を追加
-        System.out.println(tableNo + "卓の会計が完了しました。");
+        System.out.println(tableNo + "卓_会計完了");
+        System.out.println("==============================");
     }
 }

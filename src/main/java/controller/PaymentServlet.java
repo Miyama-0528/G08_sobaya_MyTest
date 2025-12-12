@@ -28,11 +28,14 @@ public class PaymentServlet extends HttpServlet {
                 ? 0 : Integer.parseInt(payAmountStr);
         int totalAmount = (totalAmountStr == null || totalAmountStr.isEmpty())
                 ? 0 : Integer.parseInt(totalAmountStr);
+        int change = payAmount - totalAmount;
+        
         // 確認用
         System.out.println("tableNumber = " + tableNumber);
         System.out.println("payAmount   = " + payAmount);
         System.out.println("totalAmount = " + totalAmount);
-        System.out.println();
+        System.out.println("change      = " + change );
+        System.out.println("==============================");
 
         // 決済処理
         PaymentService service = new PaymentService();

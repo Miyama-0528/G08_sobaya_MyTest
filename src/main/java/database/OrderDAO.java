@@ -43,7 +43,9 @@ public class OrderDAO {
     public void updateStatusToPaid(int tableNo) {
         List<OrderDTO> list = findByTableNumber(tableNo);
 
-        if (list == null) return;
+        if (list == null) {
+        	return;
+        }
 
         for (OrderDTO o : list) {
             o.setOrderStatus("会計済");

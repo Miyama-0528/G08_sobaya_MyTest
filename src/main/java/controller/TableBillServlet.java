@@ -36,6 +36,13 @@ public class TableBillServlet extends HttpServlet {
         vm.setTableNumber(info.getTableNumber());
         vm.setTotalPrice(info.getTotalPrice());
         vm.setOrderList(orders);
+        
+        //確認用
+        System.out.println("tableNo   = " + tableNo);
+        System.out.println("orders    = " + orders);
+        System.out.println("info      = " + info);
+        System.out.println("viewModel = " + vm);     
+        System.out.println("==============================");
 
         request.setAttribute("viewModel", vm);
 

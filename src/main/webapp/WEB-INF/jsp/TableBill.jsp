@@ -63,7 +63,7 @@
     <script>
       function calcChange() {
         const total = Number(document.getElementById("total").textContent);
-        const pay = Number(document.getElementById("pay").value);
+        const pay   = Number(document.getElementById("pay").value);
 
         const change = pay - total;
 
@@ -84,8 +84,6 @@
         console.log('会計完了')
         return true; // OK → 送信
       }
-    </script>
-          
     </script>
   </body>
 </html>
