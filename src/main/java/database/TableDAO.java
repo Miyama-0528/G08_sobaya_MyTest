@@ -14,7 +14,7 @@ public class TableDAO {
         }
     }
 
-    public void updateToEmpty(int tableNo) {
-        tableStatus.put(tableNo, true); // 空席に戻す
+    public void updateToEmpty(int tableNumber) {
+        tableStatus.put(tableNumber, true); // 空席に戻す
     }
 }

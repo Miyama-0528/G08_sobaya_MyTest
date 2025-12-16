@@ -40,6 +40,9 @@
       </c:forEach>
     </table>
 
+    <!-- お会計中止時確認 -->
+    <button type="button" onclick="cancelPayment()">お会計を中止する</button>
+    
     <!-- 合計金額 -->
     <h3>合計金額：<span id="total">${ viewModel.totalPrice }</span> 円</h3>
 
@@ -61,6 +64,16 @@
 
 
     <script>
+      // お会計中止時確認ポップアップ
+      function cancelPayment() {
+        const result = confirm("お会計を中止して座席一覧に戻りますか？");
+
+        if (result) {
+          location.href = "TableListServlet";
+        }
+      }
+    
+      // お釣り計算
       function calcChange() {
         const total = Number(document.getElementById("total").textContent);
         const pay   = Number(document.getElementById("pay").value);
@@ -71,7 +84,7 @@
         document.getElementById("sendPay").value = pay;
       }
 
-      // ★ 支払い金額チェック（不足していたら送信させない）
+      // 支払い金額チェック（不足していたら送信させない）
       function validatePayment() {
         const total = Number(document.getElementById("total").textContent);
         const pay = Number(document.getElementById("pay").value);

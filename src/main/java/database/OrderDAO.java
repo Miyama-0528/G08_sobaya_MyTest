@@ -35,13 +35,21 @@ public class OrderDAO {
       o3.setPrice(500);
       o3.setOrderStatus("提供済み");
       list.add(o3);
+      
+      // --- 仮データ4 ---
+      OrderDTO o4 = new OrderDTO();
+      o4.setOrderName("漬物");
+      o4.setStock(1);
+      o4.setPrice(100);
+      o4.setOrderStatus("提供中");
+      list.add(o4);
 
       return list;
   }
 
     // ★ 会計済にするメソッド
-    public void updateStatusToPaid(int tableNo) {
-        List<OrderDTO> list = findByTableNumber(tableNo);
+    public void updateStatusToPaid(int tableNumber) {
+        List<OrderDTO> list = findByTableNumber(tableNumber);
 
         if (list == null) {
         	return;
