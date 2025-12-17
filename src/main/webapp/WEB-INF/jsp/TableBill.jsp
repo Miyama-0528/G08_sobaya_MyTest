@@ -13,6 +13,10 @@
       th, td {
         border: 1px solid #000; padding: 8px; text-align: center;
       }
+      
+      div {
+        margin-top: 10px;
+      }
     </style>
   </head>
 
@@ -43,6 +47,29 @@
     <!-- お会計中止時確認 -->
     <button type="button" onclick="cancelPayment()">お会計を中止する</button>
     
+    <!-- テンキー -->
+    <div>
+      <div>
+        <button type="button" onclick="addNumber(7)">7</button>
+        <button type="button" onclick="addNumber(8)">8</button>
+        <button type="button" onclick="addNumber(9)">9</button>
+      </div>
+      <div>
+        <button type="button" onclick="addNumber(4)">4</button>
+        <button type="button" onclick="addNumber(5)">5</button>
+        <button type="button" onclick="addNumber(6)">6</button>
+      </div>
+      <div>
+        <button type="button" onclick="addNumber(1)">1</button>
+        <button type="button" onclick="addNumber(2)">2</button>
+        <button type="button" onclick="addNumber(3)">3</button>
+      </div>
+      <div>
+        <button type="button" onclick="addNumber(0)">0</button>
+        <button type="button" onclick="clearPay()">C</button>
+      </div>
+    </div>
+    
     <!-- 合計金額 -->
     <h3>合計金額：<span id="total">${ viewModel.totalPrice }</span> 円</h3>
 
@@ -72,7 +99,21 @@
           location.href = "TableListServlet";
         }
       }
-    
+
+      // テンキー：数字を追加
+      function addNumber(num) {
+        const payInput = document.getElementById("pay");
+        payInput.value = payInput.value + num;
+        calcChange(); // お釣り再計算
+      }
+
+      // テンキー：クリア
+      function clearPay() {
+        document.getElementById("pay").value = "";
+        document.getElementById("change").textContent = 0;
+        document.getElementById("sendPay").value = 0;
+      }
+      
       // お釣り計算
       function calcChange() {
         const total = Number(document.getElementById("total").textContent);
