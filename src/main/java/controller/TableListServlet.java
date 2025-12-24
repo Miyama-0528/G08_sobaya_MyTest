@@ -27,6 +27,6 @@ public class TableListServlet extends HttpServlet {
         
         request.setAttribute("viewModel", vm);
 
-        request.getRequestDispatcher("/WEB-INF/jsp/TableList.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/view/TableList.jsp").forward(request, response);
     }
 }

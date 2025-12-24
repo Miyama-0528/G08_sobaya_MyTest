@@ -46,6 +46,6 @@ public class TableBillServlet extends HttpServlet {
 
         request.setAttribute("viewModel", vm);
 
-        request.getRequestDispatcher("/WEB-INF/jsp/TableBill.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/view/TableBill.jsp").forward(request, response);
     }
 }

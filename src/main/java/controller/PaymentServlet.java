@@ -47,7 +47,7 @@ public class PaymentServlet extends HttpServlet {
         request.setAttribute("totalAmount", totalAmount);
         request.setAttribute("change", payAmount - totalAmount);
 
-        request.getRequestDispatcher("/WEB-INF/jsp/PaymentDone.jsp")
+        request.getRequestDispatcher("/WEB-INF/view/PaymentDone.jsp")
                .forward(request, response);
     }
 }

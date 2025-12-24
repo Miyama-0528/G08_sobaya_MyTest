@@ -7,44 +7,105 @@ import model.dto.OrderDTO;
 
 public class OrderDAO {
 
-    // ★ 仮データ（本番はDB接続）
-    public List<OrderDTO> findByTableNumber(int tableNumber) {
+//	/**
+//   * DBManager用
+//   */
+//	//卓番号で注文一覧を取得
+//  public List<OrderDTO> findByTableNumber(int tableNumber) {
+//
+//      List<OrderDTO> list = new ArrayList<>();
+//
+//      String sql = """
+//                   SELECT order_name,stock,price,order_status
+//                   FROM orders
+//                   WHERE table_number = ? 
+//                   """;
+//
+//      try (
+//          Connection con = DBManager.getConnection();
+//          PreparedStatement ps = con.prepareStatement(sql)
+//      ) {
+//          ps.setInt(1, tableNumber);
+//
+//          ResultSet rs = ps.executeQuery();
+//
+//          while (rs.next()) {
+//              OrderDTO dto = new OrderDTO();
+//              dto.setOrderName(rs.getString("order_name"));
+//              dto.setStock(rs.getInt("stock"));
+//              dto.setPrice(rs.getInt("price"));
+//              dto.setOrderStatus(rs.getString("order_status"));
+//              list.add(dto);
+//          }
+//
+//      } catch (Exception e) {
+//          e.printStackTrace();
+//      }
+//
+//      return list;
+//  }
+//
+//  //卓の注文を会計済みに更新
+//  public void updateStatusToPaid(int tableNumber) {
+//
+//      String sql = """
+//      						 UPDATE orders
+//      						 SET order_status = '会計済'
+//      						 WHERE table_number = ?
+//      						 """;
+//
+//      try (
+//          Connection con = DBManager.getConnection();
+//          PreparedStatement ps = con.prepareStatement(sql)
+//      ) {
+//          ps.setInt(1, tableNumber);
+//          ps.executeUpdate();
+//
+//      } catch (Exception e) {
+//          e.printStackTrace();
+//      }
+//  }
+	
+  /**
+   * 仮データ（本番はDB接続）
+   */
+  public List<OrderDTO> findByTableNumber(int tableNumber) {
 
-      List<OrderDTO> list = new ArrayList<>();
+    List<OrderDTO> list = new ArrayList<>();
 
-      // --- 仮データ1 ---
-      OrderDTO o1 = new OrderDTO();
-      o1.setOrderName("きつねうどん");
-      o1.setStock(2);
-      o1.setPrice(800);
-      o1.setOrderStatus("提供済み");
-      list.add(o1);
+    // --- 仮データ1 ---
+    OrderDTO o1 = new OrderDTO();
+    o1.setOrderName("きつねうどん");
+    o1.setStock(2);
+    o1.setPrice(800);
+    o1.setOrderStatus("提供済み");
+    list.add(o1);
 
-      // --- 仮データ2 ---
-      OrderDTO o2 = new OrderDTO();
-      o2.setOrderName("コーラ");
-      o2.setStock(1);
-      o2.setPrice(300);
-      o2.setOrderStatus("提供前");
-      list.add(o2);
+    // --- 仮データ2 ---
+    OrderDTO o2 = new OrderDTO();
+    o2.setOrderName("コーラ");
+    o2.setStock(1);
+    o2.setPrice(300);
+    o2.setOrderStatus("提供前");
+    list.add(o2);
 
-      // --- 仮データ3 ---
-      OrderDTO o3 = new OrderDTO();
-      o3.setOrderName("生ビール");
-      o3.setStock(1);
-      o3.setPrice(500);
-      o3.setOrderStatus("提供済み");
-      list.add(o3);
+    // --- 仮データ3 ---
+    OrderDTO o3 = new OrderDTO();
+    o3.setOrderName("生ビール");
+    o3.setStock(1);
+    o3.setPrice(500);
+    o3.setOrderStatus("提供済み");
+    list.add(o3);
       
       // --- 仮データ4 ---
-      OrderDTO o4 = new OrderDTO();
-      o4.setOrderName("漬物");
-      o4.setStock(1);
-      o4.setPrice(100);
-      o4.setOrderStatus("提供中");
-      list.add(o4);
+    OrderDTO o4 = new OrderDTO();
+    o4.setOrderName("漬物");
+    o4.setStock(1);
+    o4.setPrice(100);
+    o4.setOrderStatus("提供中");
+    list.add(o4);
 
-      return list;
+    return list;
   }
 
     // ★ 会計済にするメソッド

@@ -77,66 +77,57 @@
     <div>
       <label>支払金額：</label>
       <input type="number" id="pay" oninput="calcChange()">
-
-      <p>お釣り：<span id="change">0</span> 円</p>
     </div>
 
     <!-- 会計ボタン -->
-    <form action="PaymentServlet" method="post" onsubmit="return validatePayment()">
-      <input type="hidden" name="tableNumber" value="${ viewModel.tableNumber }">
-      <input type="hidden" id="sendPay" name="payAmount">
-      <input type="hidden" name="totalAmount" value="${ viewModel.totalPrice }">
-      <button type="submit">会計する</button>
-    </form>
+    <button type="button" onclick="confirmPayment()">会計</button>
+    
+    <!-- 会計結果表示エリア（初期は非表示） -->
+    <div id="resultArea" style="display:none; margin-top:20px;">
+      <h3>お釣り：<span id="finalChange">0</span> 円</h3>
 
-
+      <button type="button" onclick="location.href='TableListServlet'">
+        座席一覧へ戻る
+      </button>
+    </div>
+    
     <script>
-      // お会計中止時確認ポップアップ
-      function cancelPayment() {
-        const result = confirm("お会計を中止して座席一覧に戻りますか？");
+      let isPaid = false;
 
-        if (result) {
-          location.href = "TableListServlet";
-        }
-      }
+      function confirmPayment() {
+        if (isPaid) return;
 
-      // テンキー：数字を追加
-      function addNumber(num) {
-        const payInput = document.getElementById("pay");
-        payInput.value = payInput.value + num;
-        calcChange(); // お釣り再計算
-      }
-
-      // テンキー：クリア
-      function clearPay() {
-        document.getElementById("pay").value = "";
-        document.getElementById("change").textContent = 0;
-        document.getElementById("sendPay").value = 0;
-      }
-      
-      // お釣り計算
-      function calcChange() {
         const total = Number(document.getElementById("total").textContent);
         const pay   = Number(document.getElementById("pay").value);
 
-        const change = pay - total;
-
-        document.getElementById("change").textContent = change >= 0 ? change : 0;
-        document.getElementById("sendPay").value = pay;
-      }
-
-      // 支払い金額チェック（不足していたら送信させない）
-      function validatePayment() {
-        const total = Number(document.getElementById("total").textContent);
-        const pay = Number(document.getElementById("pay").value);
-
         if (pay < total) {
           alert("支払い金額が不足しています。");
-          console.log('金額不足')
-          return false;  // ← フォーム送信を止める
+          return;
         }
-        console.log('会計完了')
-        return true; // OK → 送信
+
+        const ok = confirm("この金額で会計しますか？");
+        if (!ok) return;
+
+        const change = pay - total;
+
+        // 表示更新
+        document.getElementById("finalChange").textContent = change;
+        document.getElementById("resultArea").style.display = "block";
+
+        // 二重会計防止
+        isPaid = true;
+      }
+
+      // テンキー
+      function addNumber(num) {
+        if (isPaid) return;
+        const pay = document.getElementById("pay");
+        pay.value = pay.value + num;
+      }
+
+      function clearPay() {
+        if (isPaid) return;
+        document.getElementById("pay").value = "";
       }
     </script>
   </body>

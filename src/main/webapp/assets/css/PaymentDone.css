@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+/* 画面全体 */
+body {
+  margin: 0;
+  padding: 20px;
+  font-family: "Segoe UI", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  background-color: #f4f6f8;
+}
+
+/* テーブル全体 */
+.table {
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 16px;
+}
+
+/* 各卓（td） */
+.table td {
+  width: 160px;
+  height: 140px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  vertical-align: middle;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* 卓番号 */
+.table td br:first-of-type {
+  margin-bottom: 12px;
+}
+
+/* 「案内可」表示 */
+.table td div {
+  margin-top: 16px;
+  color: #2e7d32;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+/* お会計ボタン */
+.table td button {
+  margin-top: 12px;
+  padding: 10px 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #e53935;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+/* ホバー時 */
+.table td button:hover {
+  background-color: #c62828;
+  transform: translateY(-2px);
+}
+
+/* 押下時 */
+.table td button:active {
+  transform: translateY(0);
+}
