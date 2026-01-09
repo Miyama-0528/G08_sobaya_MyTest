@@ -1,6 +1,6 @@
 package model.dto;
 
-public class OrderDTO {
+public class getCashiersDTO {
 	 private int orderId;
    private String orderName;
    private int price;

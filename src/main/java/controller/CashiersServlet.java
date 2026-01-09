@@ -8,13 +8,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.dto.OrderDTO;
 import model.dto.TableInfoDTO;
+import model.dto.getCashiersDTO;
 import model.service.OrderService;
-import viewmodel.TableBillViewModel;
+import viewmodel.CashiersViewModel;
 
 @WebServlet("/TableBillServlet")
-public class TableBillServlet extends HttpServlet {
+public class CashiersServlet extends HttpServlet {
 
     private OrderService service = new OrderService();
 
@@ -26,13 +26,13 @@ public class TableBillServlet extends HttpServlet {
         int tableNumber = Integer.parseInt(request.getParameter("tableNumber"));
 
         // 注文一覧取得
-        List<OrderDTO> orders = service.getOrdersByTable(tableNumber);
+        List<getCashiersDTO> orders = service.getOrdersByTable(tableNumber);
 
         // 合計金額などをまとめた情報を取得
         TableInfoDTO info = service.getTableInfo(tableNumber, orders);
 
         // ViewModel に詰める
-        TableBillViewModel vm = new TableBillViewModel();
+        CashiersViewModel vm = new CashiersViewModel();
         vm.setTableNumber(info.getTableNumber());
         vm.setTotalPrice(info.getTotalPrice());
         vm.setOrderList(orders);
@@ -46,6 +46,6 @@ public class TableBillServlet extends HttpServlet {
 
         request.setAttribute("viewModel", vm);
 
-        request.getRequestDispatcher("/WEB-INF/view/TableBill.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/view/Cashiers.jsp").forward(request, response);
     }
 }

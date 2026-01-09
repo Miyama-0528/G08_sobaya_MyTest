@@ -2,12 +2,12 @@ package viewmodel;
 
 import java.util.List;
 
-import model.dto.OrderDTO;
+import model.dto.getCashiersDTO;
 
-public class TableBillViewModel {
+public class CashiersViewModel {
     private int tableNumber;
     private int totalPrice;
-    private List<OrderDTO> orderList;
+    private List<getCashiersDTO> orderList;
 
     public int getTableNumber() {
     	return tableNumber;
@@ -25,11 +25,11 @@ public class TableBillViewModel {
     	this.totalPrice = totalPrice;
     }
 
-    public List<OrderDTO> getOrderList() {
+    public List<getCashiersDTO> getOrderList() {
     	return orderList;
     }
     
-    public void setOrderList(List<OrderDTO> orderList) {
+    public void setOrderList(List<getCashiersDTO> orderList) {
     	this.orderList = orderList;
     }
 }

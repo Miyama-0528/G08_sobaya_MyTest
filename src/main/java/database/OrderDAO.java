@@ -3,7 +3,7 @@ package database;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.dto.OrderDTO;
+import model.dto.getCashiersDTO;
 
 public class OrderDAO {
 
@@ -11,9 +11,9 @@ public class OrderDAO {
 //   * DBManager用
 //   */
 //	//卓番号で注文一覧を取得
-//  public List<OrderDTO> findByTableNumber(int tableNumber) {
+//  public List<getCashiersDTO> findByTableNumber(int tableNumber) {
 //
-//      List<OrderDTO> list = new ArrayList<>();
+//      List<getCashiersDTO> list = new ArrayList<>();
 //
 //      String sql = """
 //                   SELECT order_name,stock,price,order_status
@@ -30,7 +30,7 @@ public class OrderDAO {
 //          ResultSet rs = ps.executeQuery();
 //
 //          while (rs.next()) {
-//              OrderDTO dto = new OrderDTO();
+//              getCashiersDTO dto = new getCashiersDTO();
 //              dto.setOrderName(rs.getString("order_name"));
 //              dto.setStock(rs.getInt("stock"));
 //              dto.setPrice(rs.getInt("price"));
@@ -69,12 +69,12 @@ public class OrderDAO {
   /**
    * 仮データ（本番はDB接続）
    */
-  public List<OrderDTO> findByTableNumber(int tableNumber) {
+  public List<getCashiersDTO> findByTableNumber(int tableNumber) {
 
-    List<OrderDTO> list = new ArrayList<>();
+    List<getCashiersDTO> list = new ArrayList<>();
 
     // --- 仮データ1 ---
-    OrderDTO o1 = new OrderDTO();
+    getCashiersDTO o1 = new getCashiersDTO();
     o1.setOrderName("きつねうどん");
     o1.setStock(2);
     o1.setPrice(800);
@@ -82,7 +82,7 @@ public class OrderDAO {
     list.add(o1);
 
     // --- 仮データ2 ---
-    OrderDTO o2 = new OrderDTO();
+    getCashiersDTO o2 = new getCashiersDTO();
     o2.setOrderName("コーラ");
     o2.setStock(1);
     o2.setPrice(300);
@@ -90,7 +90,7 @@ public class OrderDAO {
     list.add(o2);
 
     // --- 仮データ3 ---
-    OrderDTO o3 = new OrderDTO();
+    getCashiersDTO o3 = new getCashiersDTO();
     o3.setOrderName("生ビール");
     o3.setStock(1);
     o3.setPrice(500);
@@ -98,7 +98,7 @@ public class OrderDAO {
     list.add(o3);
       
       // --- 仮データ4 ---
-    OrderDTO o4 = new OrderDTO();
+    getCashiersDTO o4 = new getCashiersDTO();
     o4.setOrderName("漬物");
     o4.setStock(1);
     o4.setPrice(100);
@@ -110,13 +110,13 @@ public class OrderDAO {
 
     // ★ 会計済にするメソッド
     public void updateStatusToPaid(int tableNumber) {
-        List<OrderDTO> list = findByTableNumber(tableNumber);
+        List<getCashiersDTO> list = findByTableNumber(tableNumber);
 
         if (list == null) {
         	return;
         }
 
-        for (OrderDTO o : list) {
+        for (getCashiersDTO o : list) {
             o.setOrderStatus("会計済");
         }
     }

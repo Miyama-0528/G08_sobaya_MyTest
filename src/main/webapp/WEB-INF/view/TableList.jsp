@@ -17,8 +17,7 @@
         ${ table.tableNumber }卓<br>
         <c:choose>
           <c:when test="${ table.hasCustomer }">
-            <button type="button"
-              onclick="location.href='TableBillServlet?tableNumber=${ table.tableNumber }'">
+            <button type="button" onclick="location.href='TableBillServlet?tableNumber=${ table.tableNumber }'">
               お会計
             </button>
           </c:when>

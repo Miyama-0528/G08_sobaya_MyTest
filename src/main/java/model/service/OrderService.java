@@ -3,21 +3,21 @@ package model.service;
 import java.util.List;
 
 import database.OrderDAO;
-import model.dto.OrderDTO;
 import model.dto.TableInfoDTO;
+import model.dto.getCashiersDTO;
 
 public class OrderService {
 
     private OrderDAO orderDAO = new OrderDAO();
 
-    public List<OrderDTO> getOrdersByTable(int tableNumber) {
+    public List<getCashiersDTO> getOrdersByTable(int tableNumber) {
         return orderDAO.findByTableNumber(tableNumber);
     }
 
-    public TableInfoDTO getTableInfo(int tableNumber, List<OrderDTO> orders) {
+    public TableInfoDTO getTableInfo(int tableNumber, List<getCashiersDTO> orders) {
 
         int sum = 0;
-        for (OrderDTO o : orders) {
+        for (getCashiersDTO o : orders) {
             sum += o.getPrice() * o.getStock();
         }
 
