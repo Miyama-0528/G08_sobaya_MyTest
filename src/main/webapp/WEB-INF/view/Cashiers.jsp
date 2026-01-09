@@ -21,6 +21,7 @@
   </head>
 
   <body>
+    <span id="datetime"></span>
     <h2>テーブル ${viewModel.tableNumber} の会計</h2>
 
     <!-- 注文一覧 -->
@@ -92,6 +93,14 @@
     </div>
     
     <script>
+      // お会計中止時確認ポップアップ 
+      function cancelPayment() { 
+        const result = confirm("お会計を中止して座席一覧に戻りますか？");
+        if (result) { 
+          location.href = "TableListServlet"; 
+        }
+      }
+    
       let isPaid = false;
 
       function confirmPayment() {
@@ -129,6 +138,28 @@
         if (isPaid) return;
         document.getElementById("pay").value = "";
       }
+
+      // 時間表示設定(jsp出力ver)
+      function updateDateTime() {
+        const now = new Date();
+        
+        const yyyy = now.getFullYear();
+        const mm   = String(now.getMonth() + 1).padStart(2, '0');
+        const dd   = String(now.getDate()).padStart(2, '0');
+        
+        const week = ["日", "月", "火", "水", "木", "金", "土"];
+        const w    = week[now.getDay()];
+        
+        const hh   = String(now.getHours()).padStart(2, '0');
+        const mi   = String(now.getMinutes()).padStart(2, '0');
+        const ss   = String(now.getSeconds()).padStart(2, '0');
+        
+        document.getElementById("datetime").textContent =
+          yyyy + "/" + mm + "/" + dd + " (" + w + ") " + hh + ":" + mi + ":" + ss;
+       }
+
+       updateDateTime();                  // 初回表示
+       setInterval(updateDateTime, 1000); // 1秒ごと更新
     </script>
   </body>
 </html>
