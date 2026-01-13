@@ -1,0 +1,109 @@
+@charset "UTF-8";
+
+/* 全体 */
+body {
+  background-color: #f6f2e8; /* 和紙風 */
+  color: #2b2b2b;
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+  padding: 20px;
+}
+
+/* 日時表示 */
+#datetime {
+  display: block;
+  text-align: right;
+  font-size: 14px;
+  color: #5a4a3c;
+  margin-bottom: 10px;
+}
+
+/* 見出し */
+h2 {
+  border-left: 8px solid #5a4a3c;
+  padding-left: 10px;
+  margin-bottom: 20px;
+}
+
+h3 {
+  margin-top: 20px;
+  color: #3f2f1f;
+}
+
+/* テーブル */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fffdf8;
+}
+
+th {
+  background-color: #5a4a3c;
+  color: #ffffff;
+  font-weight: normal;
+}
+
+th, td {
+  border: 1px solid #b8a58a;
+  padding: 8px;
+  text-align: center;
+}
+
+tr:nth-child(even) td {
+  background-color: #f3ede3;
+}
+
+/* ボタン共通 */
+button {
+  background-color: #7a5c3e; /* 木 */
+  color: #ffffff;
+  border: none;
+  padding: 10px 16px;
+  margin: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #5f4630;
+}
+
+/* お会計中止ボタン */
+button[onclick*="cancel"] {
+  background-color: #8b3a3a;
+}
+
+button[onclick*="cancel"]:hover {
+  background-color: #6f2c2c;
+}
+
+/* テンキー＋会計エリア全体 */
+.cashier-area {
+  display: flex;
+  gap: 40px;
+  margin-top: 20px;
+  align-items: flex-start;
+}
+
+/* テンキー */
+.tenkey {
+  background-color: #fffdf8;
+  padding: 15px;
+  border: 2px solid #b8a58a;
+}
+
+/* 会計情報エリア */
+.payment-area {
+  background-color: #e7ddc8;
+  padding: 20px;
+  min-width: 280px;
+  border: 2px solid #5a4a3c;
+}
+
+/* 支払金額入力 */
+.payment-area input {
+  margin-top: 5px;
+  font-size: 20px;
+  width: 100%;
+}
+

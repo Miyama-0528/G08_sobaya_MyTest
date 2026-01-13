@@ -4,20 +4,7 @@
 <html>
   <head>
     <title>会計画面</title>
-
-    <style>
-      table {
-        border-collapse: collapse; width: 100%;
-      }
-      
-      th, td {
-        border: 1px solid #000; padding: 8px; text-align: center;
-      }
-      
-      div {
-        margin-top: 10px;
-      }
-    </style>
+    <link rel="stylesheet" href="assets/css/Cashiers.css">
   </head>
 
   <body>
@@ -48,8 +35,11 @@
     <!-- お会計中止時確認 -->
     <button type="button" onclick="cancelPayment()">お会計を中止する</button>
     
+    <!-- テンキー＋会計エリア -->
+    <div class="cashier-area">
+
     <!-- テンキー -->
-    <div>
+    <div class="tenkey">
       <div>
         <button type="button" onclick="addNumber(7)">7</button>
         <button type="button" onclick="addNumber(8)">8</button>
@@ -63,27 +53,26 @@
       <div>
         <button type="button" onclick="addNumber(1)">1</button>
         <button type="button" onclick="addNumber(2)">2</button>
-        <button type="button" onclick="addNumber(3)">3</button>
+      <button type="button" onclick="addNumber(3)">3</button>
       </div>
       <div>
         <button type="button" onclick="addNumber(0)">0</button>
         <button type="button" onclick="clearPay()">C</button>
       </div>
     </div>
-    
-    <!-- 合計金額 -->
+
+    <!-- 会計情報 -->
+    <div class="payment-area">
+
     <h3>合計金額：<span id="total">${ viewModel.totalPrice }</span> 円</h3>
 
-    <!-- 支払金額入力＋お釣り -->
     <div>
-      <label>支払金額：</label>
-      <input type="number" id="pay" oninput="calcChange()">
+      <label>支払金額：</label><br>
+      <input type="number" id="pay">
     </div>
 
-    <!-- 会計ボタン -->
     <button type="button" onclick="confirmPayment()">会計</button>
-    
-    <!-- 会計結果表示エリア（初期は非表示） -->
+
     <div id="resultArea" style="display:none; margin-top:20px;">
       <h3>お釣り：<span id="finalChange">0</span> 円</h3>
 
@@ -91,6 +80,10 @@
         座席一覧へ戻る
       </button>
     </div>
+
+  </div>
+</div>
+
     
     <script>
       // お会計中止時確認ポップアップ 

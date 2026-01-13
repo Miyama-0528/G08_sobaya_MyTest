@@ -6,7 +6,8 @@
   <head>
     <meta charset="UTF-8">
     <title>レジ座席一覧画面</title>
-    <link rel="stylesheet" href="assets/css/TableList.css">
+    <link rel="stylesheet"
+      href="${pageContext.request.contextPath}/assets/css/TableList.css">
   </head>
   
   <body>

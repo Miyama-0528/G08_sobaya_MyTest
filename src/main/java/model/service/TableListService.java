@@ -43,7 +43,7 @@ public class TableListService {
             }
             
             //確認用
-            System.out.println("TableListDTO " + (i) + "卓 : " + dto.isHasCustomer());
+            System.out.printf("TableListDTO %2d卓 : %b%n", i, dto.isHasCustomer());
 
             list.add(dto);
         }
